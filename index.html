@@ -45,7 +45,8 @@
     <script>
 
 let apikey = "381421a362ad0980281e578d3e623064";
-let apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+let apiurl = "https://api.openweathermap.org/data/2.5/weather?";
+// https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
 
 
    let cityname = document.querySelector(".cityname");
@@ -54,7 +55,14 @@ let apiurl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
 
 async function weatherapi(cityname){
-    let response = await fetch(apiurl + cityname + `&appid=${apikey}`);
+
+    // if (cityname.value == ""){
+    //     // var response = await fetch(apiurl + `lat=${lat}&lon=${lon}&appid=${apikey}`);
+    //     alert('hjh')
+    // }
+    // else {
+    var response = await fetch(apiurl + `units=metric&q=${cityname}&appid=${apikey}`);
+    // }
 
     if(response.status == 404){
         document.querySelector(".error").style.display = "Block";
@@ -99,6 +107,8 @@ async function weatherapi(cityname){
 btn.addEventListener('click', ()=>{
     weatherapi(cityname.value);
 })
+
+
 
 </script>
 
